@@ -26,12 +26,20 @@
         <script src="assets/js/owl-carousel.js"></script>
         <script src="assets/js/animation.js"></script>
         <script src="assets/js/templatemo-custom.js"></script>
+        
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap4.css">
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
 
   <body>
+    <div>
      <!-- Mulai NAVBAR-->
         <!-- HEADER -->
-        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s" style="position: fixed;">
           <div class="container">
           <div class="row">
             <div class="col-12">
@@ -71,36 +79,155 @@
         <!-- Selesai NAVBAR-->
 
         <div class="section text-white" data-wow-duration="1s" data-wow-delay="0.5s">
-            <div class="pb-5" style="background-color: #3C592E;">
-                <div class="container d-flex justify-content-center align-items-center full-height" style="margin-top: 80px;">
-                    <div>
-                    <div id="contentPage4" style="margin-top: 80px;">
-                        <span class="fw-bold" style="font-family: Fraunces;font-size: 58px;">Cari Jenis Sampah?</span class="fw-bold">
-                        <span style="font-size: 26px;margin-left: 30px;margin-right:30px">Masih bingung membedakan jenis sampah? Coba cari disini!</span>
-                    <!-- Bagian searching bar -->
-                    <div class="main-white-button mt-2" style="width: 80%;">
-                        <div class="d-flex ">
-                            <img src="assets/svg/search-icon.svg" style="width: 20px;">
-                            <input type="text" class="form-control border-0" placeholder="Ketik Disini" id="searchDatatable">
-                        </div>
-                    </div>
-                    <!-- end -->
-            
-                    <span class="mt-2" style="font-size: 16px;margin-left: 30px;margin-right:30px"><i>Petunjuk : Ketikkan nama barang/sampah, lalu jenisnya akan muncul jika tersedia</i></span>
+            <div class="pb-5" style="background-color: #3C592E">
+                <div class="container d-flex align-items-center justify-content-center full-height" style="margin-top: 80px;">
                     
-                    </div>
-
+                        <div id="contentPage4" style="margin-top: 80px;">
+                        
+                            <span class="fw-bold" style="font-family: Fraunces;font-size: 58px;">Cari Jenis Sampah?</span class="fw-bold">
+                            <span style="font-size: 26px;margin-left: 30px;margin-right:30px">Masih bingung membedakan jenis sampah? Coba cari disini!</span>
+                            
+                            <!-- Bagian searching bar -->
+                            <div class="main-white-button mt-2" style="width: 80%;">
+                                <div class="w-100 d-flex ">
+                                    
+                                    <img src="assets/svg/search-icon.svg" style="width: 20px;" >
+                                    <input type="text" class="form-control border-0" placeholder="Ketik Disini" id="searchDatatable">
+                                </div>
+                            </div>
+                            <!-- end -->
+                            <span class="mt-2" style="font-size: 16px;margin-left: 30px;margin-right:30px"><i>Petunjuk : Ketikkan nama barang/sampah, lalu jenisnya akan muncul jika tersedia</i></span>
+                            
+                            <div class="row mt-3 table-responsive custom-table">
+                                <table id="tableSearching" class="table table-bordered table-striped text-center mt-3" 
+                                style="background-color: white;width: 100% !important;margin-left:-10px; overflow-y: auto;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center text-nowrap" style="vertical-align: middle;">Nama Barang</th>
+                                            <th class="text-center text-nowrap" style="vertical-align: middle;">Jenis</th>
+                                            <th class="text-center" style="vertical-align: middle;">Deskripsi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    
+                    
                 </div>
-                </div>
-
-                
             </div>
-        </div>
-
+    </div>
+        <!--  SCRIPT  -->
         <script>
-            $(document).ready(function(){
+        var dataSampah = [
+                {
+                "name": "Buah",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
+                {
+                "name": "Sayur",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
+                {
+                "name": "Sayur",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
+                {
+                "name": "Sayur",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
+                {
+                "name": "Sayur",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
+                {
+                "name": "Sayur",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
+                {
+                "name": "Sayur",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
+                {
+                "name": "Sayur",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
+                {
+                "name": "Sayur",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
+                {
+                "name": "Sayur",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
+                {
+                "name": "Sayur",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
+                {
+                "name": "Sayur",
+                "jenis": "Organik",
+                "deskripsi": "Merupakan jenis sampah yang <b>berasal dari mahkluk hidup</b> (manusia, hewan, dan tumbuhan) yang dapat terurai secara alami. Biasa ditemukan sehari-hari, seperti sisa makanan, rumput dan dedaunan.Tumpukan sampah organik <b>dapat sangat membahayakan</b> karena <b>menghasilkan gas metana</b>. Pengelolaannya dapat dilakukan dengan cara pengomposan"
+                },
 
+
+                ]
+            
+        $(document).ready(function(){
+            $('#tableSearching').DataTable({
+                responsive: true,
+                // "sScrollY": "200px",
+                scrollX: true,
+                // searching: false,
+                // sDom: 'lrtip',
+                dom:
+                    "<'row'<'col-sm-6 custom-show'i><'col-sm-6 custom-page'p>>" +
+                    "<'row'<'col-sm-12 'tr>>",
+                data: dataSampah,
+                pagingType: 'simple_numbers',
+                columns: [
+                    { data: 'name' 
+                    },
+                    { data: 'jenis' ,
+                        render: function (data, type, full, meta){
+                            let color;
+                            if(data == "Anorganik") {
+                                color = '#F2AE01';
+                            } else if(data == "Organik") {
+                                color = '#65BA65';
+                            } else if(data == "Residu") {
+                                color = '#A99DB0';
+                            } else if(data == "B3") {
+                                color = '#D73509';
+                            }
+                            return `<span class="p-2 w-100 btn" style="cursor:auto; border-radius:15px; background-color:`+color+`">`+data+`</span>`
+                        }
+                    },
+                    { data: 'deskripsi' },
+                ]
             });
+            
+            $('#searchDatatable').keyup(function(){
+                $('#tableSearching').DataTable().search($(this).val()).draw() ;
+            })
+        });
+
         </script>
+
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>
